@@ -7,5 +7,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@formkit/themes/tailwindcss'),
+    require('@tailwindcss/forms')
+  ],
 }

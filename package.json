@@ -9,13 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/themes": "^1.0.0-beta.12",
+    "@formkit/vue": "^1.0.0-beta.12",
+    "@headlessui/vue": "^1.7.5",
+    "@heroicons/vue": "^2.0.13",
     "firebase": "^9.15.0",
     "firebaseui": "^6.0.2",
+    "graphql": "^16.6.0",
     "vue": "^3.2.41",
     "vue-router": "4",
     "vuefire": "^3.0.0-beta.4"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@vitejs/plugin-vue": "^3.2.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",

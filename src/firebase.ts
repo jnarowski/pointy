@@ -1,11 +1,7 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from 'firebase/app'
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getFirestore, collection, doc, addDoc, setDoc } from 'firebase/firestore'
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -16,8 +12,23 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_ANALYTICS_ID
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+export const firebaseApp = initializeApp(firebaseConfig)
 
-export default app
+if (location.hostname === "localhost") {
+  connectAuthEmulator(getAuth(), "http://localhost:9099");
+}
+
+export const db = getFirestore(firebaseApp)
+
+// Collections
+export const roomCollection = collection(db, 'rooms')
+export const organizationCollection = collection(db, 'organizations')
+export const userCollection = collection(db, 'users')
+
+export const createOrganization = async (attributes: {}) => {
+  return addDoc(organizationCollection, attributes)
+}
+
+export const createUser = async (attributes: {}) => {
+  return addDoc(userCollection, attributes)
+}
